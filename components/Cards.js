@@ -21,13 +21,34 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
+//so many fun options for how to get all the article! Fun!!
+//Super curious to see how other's do it, & eventually to find out what the performance optimized one would be.
+
 axios.get("https://lambda-times-api.herokuapp.com/articles")
     .then((response) => {
-        console.log(response.data.articles.javascript[0])
-        let theCard = cardMaker(response.data.articles.javascript[0]);
-        console.log(theCard)
-        document.querySelector("div.cards-container").appendChild(theCard);
+    //     console.log(`testdata: `, response.data.articles)
+    //     console.log(`testdata: `, response.data.articles.javascript[0])
+    //     let theCard = cardMaker(response.data.articles.javascript[0]);
+    //     // console.log(theCard)
+    //     document.querySelector("div.cards-container").appendChild(theCard);
+//above is test, now the real code:
+        const articleTopicArraysInObj = response.data.articles;
+        //and the award for most atrocious naming goes to, drumroll please, ... ^^^
+        console.log(`articleTopicArraysInObj`, articleTopicArraysInObj);
+
+
+        for(const property in articleTopicArraysInObj) {
+            console.log(property);//cycling through each topic!
+            //
+            // x.forEach(() => {
+            //     console.log(`maybe?`)
+            // })
+        }
+
+
+
     })
+
 
 function cardMaker (articleObj) {
     const cardDiv = document.createElement("div");
@@ -53,7 +74,7 @@ function cardMaker (articleObj) {
     authorNameSpan.textContent = `By ` + articleObj.authorName;
 
     cardDiv.addEventListener("click", () => {
-        console.log(headlineDiv)
+        console.log(headlineDiv.textContent)
     })
 
     return cardDiv
