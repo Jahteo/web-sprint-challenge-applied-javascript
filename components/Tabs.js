@@ -9,3 +9,25 @@
 //    <div class="tab">topic here</div>
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
+
+axios.get("https://lambda-times-api.herokuapp.com/topics")
+    .then((response) => {
+        response.data.topics.forEach((topic) => {
+            const tabDiv = document.createElement("div");
+            tabDiv.classList.add("tab");
+            tabDiv.textContent = topic;
+            document.querySelector("div.topics").appendChild(tabDiv)
+            // console.lg(`trynabreaksumit`)
+        })
+    }
+    )
+    .catch((err) => {
+        console.log(err);
+        let errorMsg = document.createElement("div");
+        //hmm if I want to add a breakpoint, here's my starting point:
+        // let br = document.createElement("br");
+        // console.log(br)
+        // errorMsg.textContent = `Uh oh, there's a booboo with the tabs.js get: ` + br + err;
+        errorMsg.textContent = `Uh oh, there's a booboo with the tabs.js get... ` + err;
+        document.querySelector("div.errors-container").appendChild(errorMsg)
+    })

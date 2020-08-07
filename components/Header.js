@@ -29,3 +29,4 @@ function Header() {
     document.querySelector("div.header-container").appendChild(headerDiv)
     //return something? or does above do it?
 }
+Header();
