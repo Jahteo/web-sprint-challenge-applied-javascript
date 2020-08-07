@@ -26,25 +26,24 @@
 
 axios.get("https://lambda-times-api.herokuapp.com/articles")
     .then((response) => {
-    //     console.log(`testdata: `, response.data.articles)
-    //     console.log(`testdata: `, response.data.articles.javascript[0])
-    //     let theCard = cardMaker(response.data.articles.javascript[0]);
-    //     // console.log(theCard)
-    //     document.querySelector("div.cards-container").appendChild(theCard);
-//above is test, now the real code:
+        //     console.log(`testdata: `, response.data.articles)
+        //     console.log(`testdata: `, response.data.articles.javascript[0])
+        //     let theCard = cardMaker(response.data.articles.javascript[0]);
+        //     // console.log(theCard)
+        //     document.querySelector("div.cards-container").appendChild(theCard);
+        //above is test, now the real code:
         const articleTopicArraysInObj = response.data.articles;
         //and the award for most atrocious naming goes to, drumroll please, ... ^^^
-        console.log(`articleTopicArraysInObj`, articleTopicArraysInObj);
-
-
-        for(const property in articleTopicArraysInObj) {
-            console.log(property);//cycling through each topic!
-            //
-            // x.forEach(() => {
-            //     console.log(`maybe?`)
+        console.log(`articleTopicArraysInObj`, articleTopicArraysInObj);// is an object containing arrays containing article objects.
+        for(const topic in articleTopicArraysInObj) {
+            console.log(`topic:`, topic);//cycling through each topic correctly & returns the key string
+            console.log(articleTopicArraysInObj.topic) //is returning undefined for some reason... this is the problem
+            // articleTopicArraysInObj.topic.forEach((item) => {
+            //     let theCard = cardMaker(item);
+            //     console.log(theCard);
+            //     document.querySelector("div.cards-container").appendChild(theCard);
             // })
         }
-
 
 
     })
